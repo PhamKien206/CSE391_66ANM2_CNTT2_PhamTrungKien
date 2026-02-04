@@ -45,20 +45,6 @@ Trường Đại học Thủy Lợi
 
 ---
 
-## 🚀 Hướng dẫn chạy bài
-
-### Cách 1: Mở trực tiếp bằng trình duyệt
-
-* Click vào file `.html`
-* Chọn **Open with → Chrome / Edge / Firefox**
-
-### Cách 2: Dùng VS Code (khuyên dùng)
-
-* Mở folder bằng **VS Code**
-* Cài extension **Live Server**
-* Chuột phải file HTML → **Open with Live Server**
-
----
 
 ## 📝 Ghi chú
 
