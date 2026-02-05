@@ -1,0 +1,170 @@
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #fff;
+    margin: 0;
+    padding: 20px;
+    font-size: 14px;
+}
+
+
+hr {
+    display: none; 
+}
+
+
+table[width="100%"] tr td table:first-child {
+    background-color: #67666b;
+    color: white;
+    padding: 10px;
+}
+
+table[width="100%"] tr td table:first-child a {
+    color: white; 
+    text-decoration: none;
+    font-size: 14px;
+    margin-right: 15px;
+}
+
+input[name="TimKiem"] {
+    padding: 5px 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    outline: none;
+}
+
+
+input[name="TimKiem"] + button {
+    background-color: #ffffff;
+    color: white;
+    border: 1px solid white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-left: 5px;
+}
+
+
+h2 {
+    font-weight: 500;
+    color: #555;
+    margin: 20px 0 10px 0;
+}
+
+button {
+    cursor: default; 
+}
+
+td[align="right"] button[type="button"] {
+    background-color: #0d6efd; 
+    color: white;
+    border: none;
+    padding: 6px 16px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+
+table[border="1"] {
+    width: 100%;
+    border-collapse: collapse; 
+    border: 1px solid #dee2e6;
+    margin-top: 10px;
+    color: #212529;
+}
+
+table[border="1"] th {
+    text-align: left;
+    padding: 12px;
+    border-bottom: 2px solid #dee2e6; 
+    color: #212529;
+    font-weight: bold;
+}
+
+
+table[border="1"] td {
+    padding: 12px;
+    border: 1px solid #dee2e6;
+    border-left: none;
+    border-right: none;
+}
+
+
+table[border="1"] button:nth-child(1) {
+    background-color: #ffc107;
+    color: #000;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    margin-right: 5px;
+}
+
+
+table[border="1"] button:nth-child(2) {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+
+table[width="60%"] {
+    border: 1px solid #fbfcfd; 
+    border-radius: 6px;
+    border-spacing: 0;
+    overflow: hidden;
+    margin-top: 30px;
+    font-family: Arial, sans-serif;
+}
+
+
+table[width="60%"] tr:first-child td {
+    background-color: #edecee;
+    color: rgb(0, 0, 0);
+    padding: 10px 15px;
+    font-weight: bold;
+    border-bottom: 1px solid #ffffff;
+}
+
+table[width="60%"] tr:first-child td[align="right"] b {
+    cursor: default;
+}
+
+form input[type="text"], 
+form input[type="email"], 
+form input[type="tel"], 
+form select {
+    width: 95%;
+    padding: 8px 10px;
+    margin-top: 5px;
+    border: 1px solid #030405;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
+form td {
+    color: #0d0e0f;
+    font-size: 14px;
+}
+
+
+form button[type="submit"] {
+    background-color: #198754;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    margin-right: 5px;
+}
+
+
+form button[type="reset"] {
+    background-color: #2907e7;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+}
