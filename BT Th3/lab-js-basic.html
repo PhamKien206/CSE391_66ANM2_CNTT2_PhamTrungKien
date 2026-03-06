@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Lab JS Cơ bản</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    section {
+      margin-top: 30px;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      padding: 10px 15px;
+      margin: 5px;
+      cursor: pointer;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 3px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    input {
+      padding: 5px;
+      margin: 5px 0;
+      width: 300px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Khám phá JavaScript</h1>
+  <p id="welcome">Chưa có JavaScript...</p>
+  <button id="runBtn">Nhấn để chạy JS</button>
+
+  <section>
+    <h2>DOM & Sự kiện</h2>
+    <p id="status">Chưa có tương tác...</p>
+
+    <button id="btnHello">Chào</button>
+    <button id="btnRed">Đổi màu nền thành đỏ</button>
+
+    <div style="margin-top: 20px;">
+      <label>Nhập tên: </label>
+      <input id="nameInput" type="text" />
+      <p id="greeting"></p>
+    </div>
+  </section>
+
+  <script src="main.js"></script>
+  <script src="dom.js"></script>
+</body>
+</html>
+
