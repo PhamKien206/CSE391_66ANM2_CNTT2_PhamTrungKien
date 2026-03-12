@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Đăng Ký Tài Khoản</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .form-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="tel"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus,
+        input[type="tel"]:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Highlight border đỏ khi có lỗi */
+        input.input-error {
+            border-color: #e74c3c;
+        }
+
+        input.input-error:focus {
+            box-shadow: 0 0 5px rgba(231, 76, 60, 0.3);
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        /* Radio button styling */
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 8px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .radio-option input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .radio-option label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: 400;
+            color: #666;
+        }
+
+        /* Checkbox styling */
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .checkbox-group label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: 400;
+            color: #666;
+        }
+
+        .checkbox-error {
+            color: #e74c3c;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .checkbox-error.show {
+            display: block;
+        }
+
+        /* Nút submit */
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.1s;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        /* Thông báo thành công */
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .success-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .success-text {
+            font-size: 20px;
+            color: #27ae60;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .success-username {
+            font-size: 16px;
+            color: #555;
+            padding: 15px;
+            background: #f0f0f0;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+
+        .success-username strong {
+            color: #667eea;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-card">
+            <!-- FORM ĐĂNG KÝ -->
+            <form id="signupForm">
+                <h1> Đăng Ký Tài Khoản</h1>
+
+                <!-- Họ và tên -->
+                <div class="form-group">
+                    <label for="fullname">Họ và tên:</label>
+                    <input type="text" id="fullname" placeholder="Nhập họ và tên (VD: Nguyễn Văn A)">
+                    <div class="error-message" id="fullname-error"></div>
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" placeholder="Nhập email (VD: abc@gmail.com)">
+                    <div class="error-message" id="email-error"></div>
+                </div>
+
+                <!-- Số điện thoại -->
+                <div class="form-group">
+                    <label for="phone">Số điện thoại:</label>
+                    <input type="tel" id="phone" placeholder="Nhập số điện thoại (10 chữ số)">
+                    <div class="error-message" id="phone-error"></div>
+                </div>
+
+                <!-- Mật khẩu -->
+                <div class="form-group">
+                    <label for="password">Mật khẩu:</label>
+                    <input type="password" id="password" placeholder="Nhập mật khẩu (≥ 8 ký tự)">
+                    <div class="error-message" id="password-error"></div>
+                </div>
+
+                <!-- Xác nhận mật khẩu -->
+                <div class="form-group">
+                    <label for="confirmPassword">Xác nhận mật khẩu:</label>
+                    <input type="password" id="confirmPassword" placeholder="Nhập lại mật khẩu">
+                    <div class="error-message" id="confirmPassword-error"></div>
+                </div>
+
+                <!-- Giới tính -->
+                <div class="form-group">
+                    <label>Giới tính:</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="male" name="gender" value="Nam">
+                            <label for="male">Nam</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="female" name="gender" value="Nữ">
+                            <label for="female">Nữ</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="other" name="gender" value="Khác">
+                            <label for="other">Khác</label>
+                        </div>
+                    </div>
+                    <div class="error-message" id="gender-error"></div>
+                </div>
+
+                <!-- Điều khoản -->
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="terms">
+                        <label for="terms">Tôi đồng ý với <strong>điều khoản dịch vụ</strong> và <strong>chính sách bảo mật</strong></label>
+                    </div>
+                    <div class="checkbox-error" id="terms-error"></div>
+                </div>
+
+                <!-- Nút Submit -->
+                <button type="submit">Đăng Ký</button>
+            </form>
+
+            <!--THÔNG BÁO THÀNH CÔNG -->
+            <div class="success-message" id="successMessage">
+                <div class="success-icon">🎉</div>
+                <div class="success-text">Đăng ký thành công!</div>
+                <div class="success-username">
+                    Chào mừng <strong id="successUsername"></strong> tham gia cùng chúng tôi!
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        //LẤY PHẦN TỬ DOM 
+        const form = document.getElementById('signupForm');
+        const fullnameInput = document.getElementById('fullname');
+        const emailInput = document.getElementById('email');
+        const phoneInput = document.getElementById('phone');
+        const passwordInput = document.getElementById('password');
+        const confirmPasswordInput = document.getElementById('confirmPassword');
+        const genderInputs = document.querySelectorAll('input[name="gender"]');
+        const termsCheckbox = document.getElementById('terms');
+        const successMessage = document.getElementById('successMessage');
+        const successUsername = document.getElementById('successUsername');
+
+        // HÀM TIỆN ÍCH: HIỂN THỊ LỖI 
+        function showError(fieldId, message) {
+            const input = document.getElementById(fieldId);
+            const errorElement = document.getElementById(fieldId + '-error');
+
+            if (input && errorElement) {
+                input.classList.add('input-error');
+                errorElement.textContent = message;
+                errorElement.classList.add('show');
+            }
+        }
+
+        //HÀM TIỆN ÍCH: XÓA LỖI
+        function clearError(fieldId) {
+            const input = document.getElementById(fieldId);
+            const errorElement = document.getElementById(fieldId + '-error');
+
+            if (input && errorElement) {
+                input.classList.remove('input-error');
+                errorElement.textContent = '';
+                errorElement.classList.remove('show');
+            }
+        }
+
+        //HÀM VALIDATE HỌ TÊN
+        function validateFullname() {
+            const value = fullnameInput.value.trim();
+
+            // Kiểm tra trống
+            if (!value) {
+                showError('fullname', '❌ Vui lòng nhập họ và tên');
+                return false;
+            }
+
+            // Kiểm tra ≥ 3 ký tự
+            if (value.length < 3) {
+                showError('fullname', '❌ Họ tên phải có ít nhất 3 ký tự');
+                return false;
+            }
+
+            // Kiểm tra chỉ chữ cái và khoảng trắng
+            const nameRegex = /^[a-zA-ZÀ-ỿ\s]+$/;
+            if (!nameRegex.test(value)) {
+                showError('fullname', '❌ Họ tên chỉ được chứa chữ cái và khoảng trắng');
+                return false;
+            }
+
+            clearError('fullname');
+            return true;
+        }
+
+        // HÀM VALIDATE EMAIL 
+        function validateEmail() {
+            const value = emailInput.value.trim();
+
+            // Kiểm tra trống
+            if (!value) {
+                showError('email', '❌ Vui lòng nhập email');
+                return false;
+            }
+
+            // Kiểm tra định dạng email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(value)) {
+                showError('email', '❌ Email không hợp lệ (VD: abc@gmail.com)');
+                return false;
+            }
+
+            clearError('email');
+            return true;
+        }
+
+        // HÀM VALIDATE SỐ ĐIỆN THOẠI
+        function validatePhone() {
+            const value = phoneInput.value.trim();
+
+            // Kiểm tra trống
+            if (!value) {
+                showError('phone', '❌ Vui lòng nhập số điện thoại');
+                return false;
+            }
+
+            // Kiểm tra 10 chữ số
+            if (!/^\d{10}$/.test(value)) {
+                showError('phone', '❌ Số điện thoại phải có 10 chữ số');
+                return false;
+            }
+
+            // Kiểm tra bắt đầu bằng 0
+            if (value[0] !== '0') {
+                showError('phone', '❌ Số điện thoại phải bắt đầu bằng 0');
+                return false;
+            }
+
+            clearError('phone');
+            return true;
+        }
+
+        //HÀM VALIDATE MẬT KHẨU
+        function validatePassword() {
+            const value = passwordInput.value;
+
+            // Kiểm tra trống
+            if (!value) {
+                showError('password', '❌ Vui lòng nhập mật khẩu');
+                return false;
+            }
+
+            // Kiểm tra ≥ 8 ký tự
+            if (value.length < 8) {
+                showError('password', '❌ Mật khẩu phải có ít nhất 8 ký tự');
+                return false;
+            }
+
+            // Kiểm tra có chữ hoa
+            if (!/[A-Z]/.test(value)) {
+                showError('password', '❌ Mật khẩu phải có ít nhất 1 chữ hoa (A-Z)');
+                return false;
+            }
+
+            // Kiểm tra có chữ thường
+            if (!/[a-z]/.test(value)) {
+                showError('password', '❌ Mật khẩu phải có ít nhất 1 chữ thường (a-z)');
+                return false;
+            }
+
+            // Kiểm tra có số
+            if (!/\d/.test(value)) {
+                showError('password', '❌ Mật khẩu phải có ít nhất 1 chữ số (0-9)');
+                return false;
+            }
+
+            clearError('password');
+            return true;
+        }
+
+        // ===== HÀM VALIDATE XÁC NHẬN MẬT KHẨU =====
+        function validateConfirmPassword() {
+            const value = confirmPasswordInput.value;
+            const passwordValue = passwordInput.value;
+
+            // Kiểm tra trống
+            if (!value) {
+                showError('confirmPassword', '❌ Vui lòng xác nhận mật khẩu');
+                return false;
+            }
+
+            // Kiểm tra khớp
+            if (value !== passwordValue) {
+                showError('confirmPassword', '❌ Mật khẩu xác nhận không khớp');
+                return false;
+            }
+
+            clearError('confirmPassword');
+            return true;
+        }
+
+        // ===== HÀM VALIDATE GIỚI TÍNH =====
+        function validateGender() {
+            const selectedGender = Array.from(genderInputs).some(radio => radio.checked);
+
+            if (!selectedGender) {
+                document.getElementById('gender-error').textContent = '❌ Vui lòng chọn giới tính';
+                document.getElementById('gender-error').classList.add('show');
+                return false;
+            }
+
+            document.getElementById('gender-error').textContent = '';
+            document.getElementById('gender-error').classList.remove('show');
+            return true;
+        }
+
+        // HÀM VALIDATE ĐIỀU KHOẢN 
+        function validateTerms() {
+            if (!termsCheckbox.checked) {
+                document.getElementById('terms-error').textContent = '❌ Bạn phải đồng ý với điều khoản';
+                document.getElementById('terms-error').classList.add('show');
+                return false;
+            }
+
+            document.getElementById('terms-error').textContent = '';
+            document.getElementById('terms-error').classList.remove('show');
+            return true;
+        }
+
+        // HÀM SUBMIT FORM
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Gọi tất cả hàm validate
+            // Dùng & (bitwise AND) thay vì && để đảm bảo tất cả đều được gọi
+            const isFullnameValid = validateFullname();
+            const isEmailValid = validateEmail();
+            const isPhoneValid = validatePhone();
+            const isPasswordValid = validatePassword();
+            const isConfirmPasswordValid = validateConfirmPassword();
+            const isGenderValid = validateGender();
+            const isTermsValid = validateTerms();
+
+            // Kiểm tra tất cả hợp lệ
+            if (isFullnameValid & isEmailValid & isPhoneValid & 
+                isPasswordValid & isConfirmPasswordValid & 
+                isGenderValid & isTermsValid) {
+                
+                // Ẩn form, hiển thị thông báo thành công
+                form.style.display = 'none';
+                successMessage.classList.add('show');
+                successUsername.textContent = fullnameInput.value.trim();
+            }
+        });
+
+        // SỰ KIỆN BLUR: VALIDATE KHI RỜI KHỎI Ô =====
+        fullnameInput.addEventListener('blur', validateFullname);
+        emailInput.addEventListener('blur', validateEmail);
+        phoneInput.addEventListener('blur', validatePhone);
+        passwordInput.addEventListener('blur', validatePassword);
+        confirmPasswordInput.addEventListener('blur', validateConfirmPassword);
+
+        // SỰ KIỆN INPUT: XÓA LỖI KHI NGƯỜI DÙNG GÕ LẠI =====
+        fullnameInput.addEventListener('input', () => clearError('fullname'));
+        emailInput.addEventListener('input', () => clearError('email'));
+        phoneInput.addEventListener('input', () => clearError('phone'));
+        passwordInput.addEventListener('input', () => clearError('password'));
+        confirmPasswordInput.addEventListener('input', () => clearError('confirmPassword'));
+
+        // Xóa lỗi giới tính khi chọn radio
+        genderInputs.forEach(radio => {
+            radio.addEventListener('change', () => {
+                document.getElementById('gender-error').textContent = '';
+                document.getElementById('gender-error').classList.remove('show');
+            });
+        });
+
+        // Xóa lỗi điều khoản khi tick checkbox
+        termsCheckbox.addEventListener('change', () => {
+            document.getElementById('terms-error').textContent = '';
+            document.getElementById('terms-error').classList.remove('show');
+        });
+    </script>
+</body>
+</html>
